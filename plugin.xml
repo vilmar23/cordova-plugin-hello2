@@ -14,7 +14,7 @@
 	<platform name="android">
 
 		<config-file target="res/xml/config.xml" parent="/*">
-          <feature name="Media" >
+          <feature name="Hello" >
               <param name="Hello" value="com.example.plugin.Hello"/>
           </feature>
 		</config-file>
