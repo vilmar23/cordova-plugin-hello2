@@ -1,5 +1,5 @@
-/*var exec = require('cordova/exec');
-
+var exec = require('cordova/exec');
+/*
 var Hello = function(src, successCallback, errorCallback, statusCallback) {
 
     this.src = src;
@@ -22,4 +22,4 @@ cordova.define("cordova/plugin/hello",
             greet: greet
         }
     }
-); 
+);
