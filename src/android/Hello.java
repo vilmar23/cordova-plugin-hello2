@@ -1,9 +1,12 @@
 package com.example.plugin;
 
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaPlugin;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class Hello extends CordovaPlugin {
 
@@ -18,10 +21,8 @@ public class Hello extends CordovaPlugin {
 
             return true;
 
-        } else {
-            
-            return false;
-
         }
+        return false;
+
     }
 }
