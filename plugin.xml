@@ -13,7 +13,7 @@
 
 	<platform name="android">
 
-		<config-file target="res/xml/config.xml" parent="/cordova/plugins">
+		<config-file target="res/xml/config.xml" parent="/*">
           <feature name="Hello" >
               <param name="Hello" value="com.example.plugin.Hello"/>
           </feature>
