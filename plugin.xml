@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.example.hello"
+    version="0.6.0">
+
+	<name>Hello</name>
+    <repo>https://github.com/vilmar23/cordova-plugin-hello.git</repo>
+
+    <js-module src="www/hello.js" name="Hello">
+        <clobbers target="window.hello" />
+    </js-module>
+
+	<platform name="android">
+
+		<config-file target="res/xml/config.xml" parent="/*">
+          <feature name="Media" >
+              <param name="Hello" value="com.example.plugin.Hello"/>
+          </feature>
+		</config-file>
+
+		<source-file src="src/android/Hello.java" target-dir="src/com/example/plugin/" />
+    </platform>
+
+
+</plugin>
