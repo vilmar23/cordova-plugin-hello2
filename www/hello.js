@@ -1,5 +1,4 @@
-/*global cordova*/
-var exec = require('cordova/exec');
+/*var exec = require('cordova/exec');
 
 var Hello = function(src, successCallback, errorCallback, statusCallback) {
 
@@ -8,9 +7,9 @@ var Hello = function(src, successCallback, errorCallback, statusCallback) {
     this.errorCallback = errorCallback;
 
     exec(this.successCallback, this.errorCallback, "Hello", "greet", this.src);
-}
+} */
 
- /*
+
 cordova.define("cordova/plugin/hello",
     function (require, exports, module) {
 
@@ -23,4 +22,4 @@ cordova.define("cordova/plugin/hello",
             greet: greet
         }
     }
-); */
+); 
