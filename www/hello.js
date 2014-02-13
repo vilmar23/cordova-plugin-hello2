@@ -1,6 +1,9 @@
-window.hello = function(str, callback, errorcallback) {
-        cordova.exec(callback, errorcallback, "Hello", "greet", [str]);
+ window.hello = function(str, callback) {
+        cordova.exec(callback, function(err) {
+            callback('Nothing to echo.');
+        }, "Hello", "echo", [str]);
     };
+
 
 
 
