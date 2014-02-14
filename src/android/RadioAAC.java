@@ -1,4 +1,4 @@
-package com.example.radioaac;
+package com.example.plugin;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -30,7 +30,7 @@ public class RadioAAC extends CordovaPlugin {
 
         }
         else if (action.equals("stopPlayingAudio")) {
-          
+
             this.multiPlayer.stop();
 
         }else if (action.equals("create")) {
