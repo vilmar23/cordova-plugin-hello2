@@ -27,56 +27,11 @@ public class RadioAAC extends CordovaPlugin {
             this.multiPlayer.stop();
         }else if (action.equals("create")) {
 
-            this.multiPlayer = new MultiPlayer( clb);
+            this.multiPlayer = new MultiPlayer();
 
         }
         return false;
     }
 
-    PlayerCallback clb = new PlayerCallback() {
-        public void playerStarted() {  }
-        public void playerPCMFeedBuffer(boolean isPlaying, int bufSizeMs, int bufCapacityMs) {}
-        public void playerStopped( int perf ) {  }
-        public void playerException( Throwable t) {  }
-        public void playerMetadata( String key, String value ) {  }
-    };
-
-    /**
-     * Start or resume playing audio file.
-     * @param id				The id of the audio player
-     * @param file				The name of the audio file.
-     */
-    public void startPlayingAudio(String id, String file) {
-        /* AudioPlayer audio = this.players.get(id);
-        if (audio == null) {
-            audio = new AudioPlayer(this, id, file);
-            this.players.put(id, audio);
-        }
-        audio.startPlaying(file);  */
-    }
-
-    /**
-     * Pause playing.
-     * @param id				The id of the audio player
-     */
-    public void pausePlayingAudio(String id) {
-       /* AudioPlayer audio = this.players.get(id);
-        if (audio != null) {
-            audio.pausePlaying();
-        }  */
-    }
-
-    /**
-     * Stop playing the audio file.
-     * @param id				The id of the audio player
-     */
-    public void stopPlayingAudio(String id) {
-      /*  AudioPlayer audio = this.players.get(id);
-        if (audio != null) {
-            audio.stopPlaying();
-            //audio.destroy();
-            //this.players.remove(id);
-        }     */
-    }
 }
 
