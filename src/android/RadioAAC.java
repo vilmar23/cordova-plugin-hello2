@@ -17,6 +17,8 @@ import com.spoledge.aacdecoder.AACPlayer;
  */
 public class RadioAAC extends CordovaPlugin {
 
+    private MultiPlayer multiPlayer = null;
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         PluginResult.Status status = PluginResult.Status.OK;
