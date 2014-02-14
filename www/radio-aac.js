@@ -3,9 +3,7 @@ var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');
 
 var RadioAAC = function(src, successCallback, errorCallback, statusCallback) {
-    argscheck.checkArgs('SFFF', 'Media', arguments);
     this.id = utils.createUUID();
-    mediaObjects[this.id] = this;
     this.src = src;
     this.successCallback = successCallback;
     this.errorCallback = errorCallback;

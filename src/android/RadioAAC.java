@@ -17,7 +17,7 @@ import com.spoledge.aacdecoder.AACPlayer;
  */
 public class RadioAAC extends CordovaPlugin {
 
-    private MultiPlayer multiPlayer = null;
+    private aacPlayer multiPlayer = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -31,7 +31,8 @@ public class RadioAAC extends CordovaPlugin {
             this.multiPlayer.stop();
         }else if (action.equals("create")) {
 
-            this.multiPlayer = new MultiPlayer();
+            AACPlayer aacPlayer = new AACPlayer();
+            this.multiPlayer = aacPlayer;
 
         }
         return false;
