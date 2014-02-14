@@ -6,6 +6,7 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.spoledge.aacdecoder.AACPlayer;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -17,6 +18,8 @@ public class Hello extends CordovaPlugin {
         if (action.equals("echo")) {
             String message = args.getString(0);
             this.echo(message, callbackContext);
+            AACPlayer aacPlayer = new AACPlayer();
+            aacPlayer.playAsync( "http://livestreaming.esradio.fm/aaclive32" );
             return true;
         }
         return false;
