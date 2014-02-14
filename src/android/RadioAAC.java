@@ -1,13 +1,15 @@
-package com.example.plugin;
+package com.example.radioaac;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
-import org.apache.cordova.PluginResult; 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.spoledge.aacdecoder.MultiPlayer;
+import com.spoledge.aacdecoder.AACPlayer;
 
 
 /**
@@ -21,7 +23,7 @@ public class RadioAAC extends CordovaPlugin {
         String result = "";
 
         if (action.equals("startPlayingAudio")) {
-            multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
+            this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
         }
         else if (action.equals("stopPlayingAudio")) {
             this.multiPlayer.stop();
