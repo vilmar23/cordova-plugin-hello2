@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.example.plugin.hello"
+    id="com.example.radioaac"
     version="0.6.0">
 
-	<name>Hello</name>
+	<name>RadioAAC</name>
     <repo>https://github.com/vilmar23/cordova-plugin-hello2.git</repo>
 
-    <js-module src="www/hello.js" name="Hello">
-        <clobbers target="js/hello.js" />
+    <js-module src="www/radio-aac.js" name="RadioAAC">
+        <clobbers target="window.RadioAAC" />
     </js-module>
 
 	<platform name="android">
 
 		<config-file target="res/xml/config.xml" parent="/*">
-          <feature name="Hello" >
-              <param name="android-package" value="com.example.plugin.Hello"/>
+          <feature name="RadioAAC" >
+              <param name="android-package" value="com.example.radioaac"/>
           </feature>
 		</config-file>
 
@@ -26,7 +26,7 @@
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
-		<source-file src="src/android/Hello.java" target-dir="src/com/example/plugin/" />
+		<source-file src="src/android/RadioAAC.java" target-dir="src/com/radioaac/" />
     </platform>
 
 
