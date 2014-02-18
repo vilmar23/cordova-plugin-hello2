@@ -25,7 +25,7 @@ public class RadioAAC extends CordovaPlugin {
         String result = "";
 
         if (action.equals("startPlayingAudio")) {
-            if(!this.multiPlayer){
+            if(this.multiPlayer==null){
                 this.multiPlayer = new AACPlayer();
                 this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
             }
@@ -33,7 +33,7 @@ public class RadioAAC extends CordovaPlugin {
         else if (action.equals("stopPlayingAudio")) {
 
             this.multiPlayer.stop();
-            this.multiplayer = null;
+            this.multiPlayer = null;
 
         }else if (action.equals("create")) {
 
