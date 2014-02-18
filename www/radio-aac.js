@@ -2,6 +2,8 @@ var argscheck = require('cordova/argscheck'),
     utils = require('cordova/utils'),
     exec = require('cordova/exec');
 
+var radioObjects = {};
+
 var RadioAAC = function(src, successCallback, errorCallback, statusCallback) {
     this.id = utils.createUUID();
     this.src = src;
@@ -65,24 +67,24 @@ RadioAAC.prototype.pause = function() {
 
 RadioAAC.onStatus = function(id, msgType, value) {
 
-    var media = mediaObjects[id];
+    var radio = radioObjects[id];
 
-    if(media) {
+    if(radio) {
         switch(msgType) {
             case RadioAAC.MEDIA_STATE :
-                media.statusCallback && media.statusCallback(value);
+                radio.statusCallback && radio.statusCallback(value);
                 if(value == Media.MEDIA_STOPPED) {
-                    media.successCallback && media.successCallback();
+                    radio.successCallback && radio.successCallback();
                 }
                 break;
             case RadioAAC.MEDIA_DURATION :
-                media._duration = value;
+                radio._duration = value;
                 break;
             case RadioAAC.MEDIA_ERROR :
-                media.errorCallback && media.errorCallback(value);
+                radio.errorCallback && radio.errorCallback(value);
                 break;
             case RadioAAC.MEDIA_POSITION :
-                media._position = Number(value);
+                radio._position = Number(value);
                 break;
             default :
                 console.error && console.error("Unhandled Media.onStatus :: " + msgType);
@@ -90,7 +92,7 @@ RadioAAC.onStatus = function(id, msgType, value) {
         }
     }
     else {
-         console.error && console.error("Received Media.onStatus callback for unknown media :: " + id);
+         console.error && console.error("Received RadioACC.onStatus callback for unknown radioaac :: " + id);
     }
 
 };

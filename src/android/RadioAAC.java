@@ -25,18 +25,17 @@ public class RadioAAC extends CordovaPlugin {
         String result = "";
 
         if (action.equals("startPlayingAudio")) {
-
-            this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
-
+            if(!this.multiPlayer){
+                this.multiPlayer = new AACPlayer();
+                this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
+            }
         }
         else if (action.equals("stopPlayingAudio")) {
 
             this.multiPlayer.stop();
+            this.multiplayer = null;
 
         }else if (action.equals("create")) {
-
-            AACPlayer aacPlayer = new AACPlayer();
-            this.multiPlayer = aacPlayer;
 
         }
         return false;
