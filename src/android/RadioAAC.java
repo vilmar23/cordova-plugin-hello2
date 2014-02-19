@@ -44,8 +44,8 @@ public class RadioAAC extends CordovaPlugin {
         this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         this.connectionCallbackContext = null;
 
-        // We need to listen to connectivity events to update navigator.connection
         IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.PHONE_STATE");
         if (this.receiver == null) {
             this.receiver = new BroadcastReceiver() {
                 @Override
@@ -61,10 +61,17 @@ public class RadioAAC extends CordovaPlugin {
                     } else if ( intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
                                     TelephonyManager.EXTRA_STATE_OFFHOOK)) {
 
-                            RadioAAC.this.FinLlamada();
-                            Log.d(LOG_TAG, "Llamada Finalizada.");
-                        }
-                    }
+                            //RadioAAC.this.FinLlamada();
+                            Log.d(LOG_TAG, "Llamada OFFHOOK.");
+
+                    }else if ( intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
+                            TelephonyManager.EXTRA_STATE_IDLE)) {
+
+		                    RadioAAC.this.FinLlamada();
+		                    Log.d(LOG_TAG, "Llamada IDLE.");
+		            }
+
+                }
             };
             cordova.getActivity().registerReceiver(this.receiver, intentFilter);
             this.registered = true;
@@ -119,4 +126,3 @@ public class RadioAAC extends CordovaPlugin {
         }
     }
 }
-
