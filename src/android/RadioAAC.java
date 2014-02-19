@@ -46,7 +46,6 @@ public class RadioAAC extends CordovaPlugin {
 
         // We need to listen to connectivity events to update navigator.connection
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         if (this.receiver == null) {
             this.receiver = new BroadcastReceiver() {
                 @Override
