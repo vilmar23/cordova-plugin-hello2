@@ -53,7 +53,7 @@ public class RadioAAC extends CordovaPlugin {
                     if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
                             TelephonyManager.EXTRA_STATE_RINGING)) {
 
-                            //RadioAAC.this.Llamada();
+                            RadioAAC.this.Llamada();
                             Log.d(LOG_TAG, "Recibiendo Llamada.");
 
                             // Ringing state
@@ -61,7 +61,7 @@ public class RadioAAC extends CordovaPlugin {
                     } else if ( intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
                                     TelephonyManager.EXTRA_STATE_OFFHOOK)) {
 
-                            //RadioAAC.this.FinLlamada();
+                            RadioAAC.this.FinLlamada();
                             Log.d(LOG_TAG, "Llamada Finalizada.");
                         }
                     }
