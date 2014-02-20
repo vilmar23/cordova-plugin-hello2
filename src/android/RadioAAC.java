@@ -19,7 +19,6 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.spoledge.aacdecoder.MultiPlayer;
-import com.spoledge.aacdecoder.AACPlayer;
 
 
 /**
@@ -27,10 +26,10 @@ import com.spoledge.aacdecoder.AACPlayer;
  */
 public class RadioAAC extends CordovaPlugin {
 
-    private MultiPlayer multiPlayer = null;
+    private static MultiPlayer multiPlayer = null;
 
-    private int estado = 0;
-    private int restaurar = 0;
+    private static boolean sonando = false;
+    private static boolean restaurar = false;
 
     BroadcastReceiver receiver;
     private CallbackContext connectionCallbackContext;
@@ -43,6 +42,8 @@ public class RadioAAC extends CordovaPlugin {
         super.initialize(cordova, webView);
         this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         this.connectionCallbackContext = null;
+        if(RadioAAC.multiPlayer==null)
+        	RadioAAC.multiPlayer = new MultiPlayer();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.intent.action.PHONE_STATE");
@@ -104,31 +105,28 @@ public class RadioAAC extends CordovaPlugin {
     }
 
     public void Play() {
-        if(this.multiPlayer==null){
-            this.multiPlayer = new MultiPlayer();
-            this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
-            this.estado = 1;
+    	this.Stop();
+        if(!RadioAAC.sonando){
+        	RadioAAC.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
+        	RadioAAC.sonando = true;
         }
     }
 
     public void Stop() {
-        if(this.multiPlayer!=null){
-          this.multiPlayer.stop();
-          this.multiPlayer = null;
-          this.estado = 0;
-        }
+       RadioAAC.multiPlayer.stop();
+       RadioAAC.sonando = false;
     }
 
     public void Llamada() {
-        if(this.estado==1){
-            this.restaurar = 1;
+        if(RadioAAC.sonando){
+        	RadioAAC.restaurar = true;
             this.Stop();
         }
     }
 
     public void FinLlamada() {
-        if(this.restaurar==1){
-            this.restaurar = 0;
+        if(RadioAAC.restaurar){
+        	RadioAAC.restaurar = false;
             this.Play();
         }
     }
