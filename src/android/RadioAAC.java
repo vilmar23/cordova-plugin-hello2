@@ -80,7 +80,7 @@ public class RadioAAC extends CordovaPlugin {
     }
 
     public void onDestroy() {
-        this.stop();
+        this.Stop();
     }
 
 
