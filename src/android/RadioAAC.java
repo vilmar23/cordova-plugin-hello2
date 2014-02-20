@@ -112,9 +112,11 @@ public class RadioAAC extends CordovaPlugin {
     }
 
     public void Stop() {
-        this.multiPlayer.stop();
-        this.multiPlayer = null;
-        this.estado = 0;
+        if(this.multiPlayer!=null){
+          this.multiPlayer.stop();
+          this.multiPlayer = null;
+          this.estado = 0;
+        }
     }
 
     public void Llamada() {
