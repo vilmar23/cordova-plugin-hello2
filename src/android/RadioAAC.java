@@ -27,7 +27,7 @@ import com.spoledge.aacdecoder.AACPlayer;
  */
 public class RadioAAC extends CordovaPlugin {
 
-    private AACPlayer multiPlayer = null;
+    private MultiPlayer multiPlayer = null;
 
     private int estado = 0;
     private int restaurar = 0;
@@ -79,6 +79,10 @@ public class RadioAAC extends CordovaPlugin {
 
     }
 
+    public void onDestroy() {
+        this.stop();
+    }
+
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -100,7 +104,7 @@ public class RadioAAC extends CordovaPlugin {
 
     public void Play() {
         if(this.multiPlayer==null){
-            this.multiPlayer = new AACPlayer();
+            this.multiPlayer = new MultiPlayer();
             this.multiPlayer.playAsync("http://livestreaming.esradio.fm/aaclive32");
             this.estado = 1;
         }
