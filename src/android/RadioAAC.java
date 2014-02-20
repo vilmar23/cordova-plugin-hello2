@@ -81,7 +81,7 @@ public class RadioAAC extends CordovaPlugin {
 
     public void onDestroy() {
         this.Stop();
-        unregisterReceiver(this.receiver);
+        cordova.getActivity().unregisterReceiver(this.receiver);
     }
 
 
