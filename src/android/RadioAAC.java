@@ -109,7 +109,7 @@ public class RadioAAC extends CordovaPlugin {
     public void Play(String url) {
     	this.Stop();
         if(!RadioAAC.sonando){
-            if((url == null) || (url.equals("")) url =  this.file;
+            if((url == null) || (url.equals(""))) url =  this.file;
             else this.file = url;
         	RadioAAC.multiPlayer.playAsync(url);
         	RadioAAC.sonando = true;
