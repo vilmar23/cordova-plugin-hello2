@@ -33,7 +33,8 @@ RadioAAC.MEDIA_MSG = ["None", "Starting", "Running", "Paused", "Stopped"];
 /**
  * Start or resume playing audio file.
  */
-RadioAAC.prototype.play = function(options) {
+RadioAAC.prototype.play = function(url) {
+    this.src = url;
     exec(null, null, "RadioAAC", "startPlayingAudio", [this.src]);
 };
 
