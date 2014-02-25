@@ -31,7 +31,7 @@ public class RadioAAC extends CordovaPlugin {
     private static boolean sonando = false;
     private static boolean restaurar = false;
 
-    private string file = "http://livestreaming.esradio.fm/aaclive32";
+    private String file = "http://livestreaming.esradio.fm/aaclive32";
 
     BroadcastReceiver receiver;
     private CallbackContext connectionCallbackContext;
@@ -106,10 +106,11 @@ public class RadioAAC extends CordovaPlugin {
         return false;
     }
 
-    public void Play(url) {
+    public void Play(String url) {
     	this.Stop();
         if(!RadioAAC.sonando){
-            if(!url) url =  this.file;
+            if((url == null) || (url.equals("")) url =  this.file;
+            else this.file = url;
         	RadioAAC.multiPlayer.playAsync(url);
         	RadioAAC.sonando = true;
         }
@@ -130,7 +131,7 @@ public class RadioAAC extends CordovaPlugin {
     public void FinLlamada() {
         if(RadioAAC.restaurar){
         	RadioAAC.restaurar = false;
-            this.Play();
+            this.Play(this.file);
         }
     }
 }
