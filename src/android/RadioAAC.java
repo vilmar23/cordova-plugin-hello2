@@ -94,7 +94,7 @@ public class RadioAAC extends CordovaPlugin {
         String result = "";
 
         if (action.equals("startPlayingAudio")) {
-            this.Play(args.getString(1));
+            this.Play(args.getString(0));
         }
         else if (action.equals("stopPlayingAudio")) {
 
@@ -111,7 +111,7 @@ public class RadioAAC extends CordovaPlugin {
         if(!RadioAAC.sonando){
             if((url == null) || (url.equals(""))) url =  this.file;
             else this.file = url;
-        	RadioAAC.multiPlayer.playAsync(url);
+        	RadioAAC.multiPlayer.playAsync(this.file);
         	RadioAAC.sonando = true;
         }
     }
