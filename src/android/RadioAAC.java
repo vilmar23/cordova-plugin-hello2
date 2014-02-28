@@ -10,12 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.BroadcastReceiver;
-import android.net.ConnectivityManager;
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.spoledge.aacdecoder.MultiPlayer;
@@ -28,63 +25,20 @@ public class RadioAAC extends CordovaPlugin {
 
     private static MultiPlayer multiPlayer = null;
 
-    private static boolean sonando = false;
-    private static boolean restaurar = false;
-
     private String file = "http://livestreaming.esradio.fm/aaclive32";
-
-    BroadcastReceiver receiver;
-    private CallbackContext connectionCallbackContext;
-    private boolean registered = false;
-    ConnectivityManager sockMan;
 
     private static final String LOG_TAG = "RadioAAC";
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        this.sockMan = (ConnectivityManager) cordova.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        this.connectionCallbackContext = null;
+
         if(RadioAAC.multiPlayer==null)
         	RadioAAC.multiPlayer = new MultiPlayer();
-
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.intent.action.PHONE_STATE");
-        if (this.receiver == null) {
-            this.receiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
-                            TelephonyManager.EXTRA_STATE_RINGING)) {
-
-                            RadioAAC.this.Llamada();
-                            Log.d(LOG_TAG, "Recibiendo Llamada.");
-
-                            // Ringing state
-                            // This code will execute when the phone has an incoming call
-                    } else if ( intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
-                                    TelephonyManager.EXTRA_STATE_OFFHOOK)) {
-
-                            //RadioAAC.this.FinLlamada();
-                            Log.d(LOG_TAG, "Llamada OFFHOOK.");
-
-                    }else if ( intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(
-                            TelephonyManager.EXTRA_STATE_IDLE)) {
-
-		                    RadioAAC.this.FinLlamada();
-		                    Log.d(LOG_TAG, "Llamada IDLE.");
-		            }
-
-                }
-            };
-            cordova.getActivity().registerReceiver(this.receiver, intentFilter);
-            this.registered = true;
-        }
 
     }
 
     public void onDestroy() {
         this.Stop();
-        cordova.getActivity().unregisterReceiver(this.receiver);
     }
 
 
