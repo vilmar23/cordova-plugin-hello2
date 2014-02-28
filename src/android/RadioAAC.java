@@ -29,6 +29,9 @@ public class RadioAAC extends CordovaPlugin {
 
     private static final String LOG_TAG = "RadioAAC";
 
+    private static boolean sonando = false;
+    private static boolean restaurar = false;
+
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
 
