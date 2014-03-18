@@ -15,6 +15,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.spoledge.aacdecoder.MultiPlayer;
 
 
@@ -31,6 +34,8 @@ public class RadioAAC extends CordovaPlugin {
 
     private static boolean sonando = false;
     private static boolean restaurar = false;
+
+    private Timer temporizador = null;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -59,6 +64,8 @@ public class RadioAAC extends CordovaPlugin {
 
         }else if (action.equals("create")) {
 
+        }else if (action.equals("reposo")) {
+        	this.Reposo(Integer.parseInt(args.getString(0)));
         }
         return false;
     }
@@ -90,5 +97,24 @@ public class RadioAAC extends CordovaPlugin {
         	RadioAAC.restaurar = false;
             this.Play(this.file);
         }
+    }
+
+    //tells handler to send a message
+   class Tarea extends TimerTask {
+
+        @Override
+        public void run() {
+        	Stop();
+        }
+   };
+
+    public void Reposo(int milliseconds){
+      if(temporizador!=null){
+         temporizador.cancel();
+         temporizador.purge();
+      }else{
+        temporizador = new Timer();
+      }
+      temporizador.schedule(new Tarea(), milliseconds);
     }
 }

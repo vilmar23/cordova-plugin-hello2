@@ -66,6 +66,13 @@ RadioAAC.prototype.pause = function() {
     exec(null, this.errorCallback, "RadioAAC", "pausePlayingAudio", [this.id]);
 };
 
+/**
+ * Seek or jump to a new time in the track..
+ */
+RadioAAC.prototype.reposo = function(milliseconds) {
+    exec(null, null, "RadioAAC", "reposo", [milliseconds]);
+};
+
 
 RadioAAC.onStatus = function(id, msgType, value) {
 
