@@ -40,6 +40,19 @@ public class RadioAAC extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
 
+        try {
+            java.net.URL.setURLStreamHandlerFactory( new java.net.URLStreamHandlerFactory(){
+                public java.net.URLStreamHandler createURLStreamHandler( String protocol ) {
+                    Log.d( LOG_TAG, "Asking for stream handler for protocol: '" + protocol + "'" );
+                    if ("icy".equals( protocol )) return new com.spoledge.aacdecoder.IcyURLStreamHandler();
+                    return null;
+                }
+            });
+        }
+        catch (Throwable t) {
+            Log.w( LOG_TAG, "Cannot set the ICY URLStreamHandler - maybe already set ? - " + t );
+        }
+
         if(RadioAAC.multiPlayer==null)
         	RadioAAC.multiPlayer = new MultiPlayer();
 
@@ -112,9 +125,8 @@ public class RadioAAC extends CordovaPlugin {
       if(temporizador!=null){
          temporizador.cancel();
          temporizador.purge();
-      }else{
-        temporizador = new Timer();
       }
+      temporizador = new Timer();
       temporizador.schedule(new Tarea(), milliseconds);
     }
 }
