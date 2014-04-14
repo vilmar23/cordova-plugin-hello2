@@ -96,6 +96,8 @@ public class RadioAAC extends CordovaPlugin {
     public void Stop() {
        RadioAAC.multiPlayer.stop();
        RadioAAC.sonando = false;
+       RadioAAC.multiPlayer = null;
+       RadioAAC.multiPlayer = new MultiPlayer();
     }
 
     public void Llamada() {
